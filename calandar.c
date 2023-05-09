@@ -67,6 +67,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     PAINTSTRUCT ps;
     RECT rect;
     int month[12]={31,28,31,30,31,30,31,31,30,31,30,31};
+    int ano=0;
+    int mes=0;
     char startStr[1025];
     time_t rawtime;
     struct tm *timeinfo;
@@ -82,10 +84,10 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
     // Calcula o dia da semana (0 = domingo, 1 = segunda-feira, etc.)
     int d = tm->tm_wday;
-   int mes = tm->tm_mon + 1;
-   
+   mes = tm->tm_mon + 1;
+    ano = tm->tm_year + 1900;
     char buffer[MAX_BUFFER_SIZE];
-
+    if((ano/4)*4==ano)month[2]=29;
     
 
     switch (message)
